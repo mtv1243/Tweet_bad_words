@@ -1,0 +1,81 @@
+#inputWord {
+    display: none;  
+    margin-left : auto;
+    margin-right : auto;
+    margin-top: 5px;
+    width: 180px;
+}
+
+#titleWord{
+    margin-top: 10px;
+}
+
+#restartButton{
+    display: none;
+    position: relative;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 30px;
+    margin-bottom: 20px;
+    width: 150px;
+    height: 30px;
+}
+
+#gameContainer{
+    border: solid 2px red;
+    width: 400px;
+    height: 250px;
+    position: relative;
+    top : 50px;
+    left: 250px;   
+}
+
+h1, h2{
+    text-align: center;
+    margin: 0px auto 5px auto;
+    clear: both;
+}
+
+h1{
+    margin-top: 10px;
+}
+
+#startButton{
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 30px;
+    display: block;
+    width: 200px;
+    height: 50px;
+}
+
+.progressBar{
+    height: 10px;    
+    display: block;
+    margin-left: 110px;
+    animation-name: countDown;  
+    clear: both;
+}
+
+#message{
+    margin-left: 155px;
+    clear: both;
+}
+
+#score{
+    margin-left: 10px;
+    float: left;
+}
+
+#level{
+    margin-right: 10px;
+    float: right;
+}
+
+@keyframes countDown{
+    from{width: 180px;}
+    to{width: 0px;}
+    0% {background-color: green;}
+    40%{background-color: yellowgreen}
+    70%{background-color: red;}
+}
