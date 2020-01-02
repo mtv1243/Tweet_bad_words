@@ -211,8 +211,8 @@ function storeScore(firebase_score) {
 function generateTweet() {
   //stringify the words user typed
   let previousWordsStr = previousWords.toString();
-  tweetWords = previousWordsStr.substring(0, 244);
-  let tweetText = 'These words were typed by redacted: ' + tweetWords;
+  tweetWords = previousWordsStr.substring(0, 241);
+  let tweetText = 'These words were typed by redacted: ' + tweetWords + '...';
   console.log(tweetText);
 }
 
