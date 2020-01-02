@@ -3,13 +3,13 @@
 
   // Your web app's Firebase configuration
   var firebaseConfig = {
-    apiKey: "AIzaSyAbWivHe4ExOsaSen3j3NldPsh2a2a261-k",
+    apiKey: "----",
     authDomain: "type-bad-words.firebaseapp.com",
     databaseURL: "https://type-bad-words.firebaseio.com",
     projectId: "type-bad-words",
     storageBucket: "type-bad-words.appspot.com",
     messagingSenderId: "419696050106",
-    appId: "1:419696050106:web:9a85519eca330818d2278-3"
+    appId: "-----"
   };
   // Initialize Firebase
   firebase.initializeApp(firebaseConfig);
@@ -17,9 +17,18 @@
 let ScoresReference = firebase.database();
 let scoresRef = ScoresReference.ref('scores');
 
-console.log(firebase.database().ref('scores').once('value').then(function(snapshot) {
-  return snapshot.val();
-}));
+//get snapshot of the scores database
+scoresRef.once('value').then(function(snapshot) {
+  let highScores = [];
+  let fbScores = snapshot.val();
+  for (let key in fbScores){
+    highScores.push(fbScores[key].score)
+  }
+  //arrange the high scores in descending order
+  highScores.sort((num1, num2)=>{return (num2-num1)});
+  //insert the high scores into the page
+  console.log(highScores);
+});
 /*==========================================
  */
 
