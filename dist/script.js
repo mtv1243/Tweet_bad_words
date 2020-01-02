@@ -3,13 +3,13 @@
 
   // Your web app's Firebase configuration
   var firebaseConfig = {
-    apiKey: "----",
+    apiKey: "---",
     authDomain: "type-bad-words.firebaseapp.com",
     databaseURL: "https://type-bad-words.firebaseio.com",
     projectId: "type-bad-words",
     storageBucket: "type-bad-words.appspot.com",
     messagingSenderId: "419696050106",
-    appId: "-----"
+    appId: "1:419696050106:web:9a85519eca330818d2278-3"
   };
   // Initialize Firebase
   firebase.initializeApp(firebaseConfig);
@@ -24,10 +24,16 @@ scoresRef.once('value').then(function(snapshot) {
   for (let key in fbScores){
     highScores.push(fbScores[key].score)
   }
+
   //arrange the high scores in descending order
   highScores.sort((num1, num2)=>{return (num2-num1)});
+
   //insert the high scores into the page
-  console.log(highScores);
+  for (let i = 0; i<5; i++){
+    let elementHS = document.querySelector('.hs' + i);
+    elementHS.innerHTML = 'redacted: ' + highScores[i];
+  }
+
 });
 /*==========================================
  */
@@ -158,6 +164,8 @@ function setCountDown(evt) {
       elementRestartButton.style.visibility = "visible";
       //stores the score in firebase
       storeScore(score);
+      // generate the tweet text
+      generateTweet();
     }
   }, INTERVAL_FACTOR);
 }
@@ -194,11 +202,18 @@ function validateWord(evt) {
 
 window.onload = init;
 
-
 function storeScore(firebase_score) {
   scoresRef.push({
     score: firebase_score
   })
+}
+
+function generateTweet() {
+  //stringify the words user typed
+  let previousWordsStr = previousWords.toString();
+  tweetWords = previousWordsStr.substring(0, 244);
+  let tweetText = 'These words were typed by redacted: ' + tweetWords;
+  console.log(tweetText);
 }
 
 // storeScore();
