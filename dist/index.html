@@ -1,42 +1,33 @@
-<!DOCTYPE html>
-<html lang="en" >
-<head>
-  <meta charset="UTF-8">
-  <title>Type Bad Words</title>
-  <link rel="stylesheet" href="./style.css">
 
-</head>
-<body>
-<!-- partial:index.partial.html -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">        
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="./style.css">
     <title>Typing or Dead</title>
 </head>
 <body>
+  <!-- The core Firebase JS SDK is always required and must be listed first -->
+<script src="https://www.gstatic.com/firebasejs/7.6.1/firebase-app.js"></script>
     <div id="gameContainer">
         <h1>Typing or Dead</h1>
-        <h2>Enter the word before the time bar ends</h2>     
+        <h2>Enter the word before the time bar ends</h2>
         <button type="submit" id = "startButton">START GAME</button>
         <h2 id = "titleWord"></h2>
-        <h2 id = "randomWord"></h2>      
+        <h2 id = "randomWord"></h2>
         <div id = "countDown"></div>
         <div>
-            <input type="text" id="inputWord">  
-        </div> 
+            <input type="text" id="inputWord">
+        </div>
         <div id = "infoSection">
-            <p id = "score"></p>   
-            <p id = "level"></p>       
-        </div>    
+            <p id = "score"></p>
+            <p id = "level"></p>
+        </div>
         <div id = "message"></div>
         <button  type="submit" id = "restartButton">PLAY AGAIN</button>
     </div>
-</body>
-</html>
-<!-- partial -->
   <script  src="./script.js"></script>
 
 </body>
