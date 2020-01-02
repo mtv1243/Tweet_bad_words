@@ -1,26 +1,25 @@
-//Firebase setup
-// Your web app's Firebase configuration
-var firebaseConfig = {
-  apiKey: "A-IzaSyAbWivHe4ExOsaSen3j3NldPsh2a2a261-k",
-  authDomain: "type-bad-words.firebaseapp.com",
-  databaseURL: "https://type-bad-words.firebaseio.com",
-  projectId: "type-bad-words",
-  storageBucket: "type-bad-words.appspot.com",
-  messagingSenderId: "41969605010--6",
-  appId: "1--:419696050106:web:9a85519eca330818d2278--3"
-};
-// Initialize Firebase
-firebase.initializeApp(firebaseConfig);
+// TODO: Add SDKs for Firebase products that you want to use
+// https://firebase.google.com/docs/web/setup#available-libraries -->
+
+  // Your web app's Firebase configuration
+  var firebaseConfig = {
+    apiKey: "AIzaSyAbWivHe4ExOsaSen3j3NldPsh2a2a261-k",
+    authDomain: "type-bad-words.firebaseapp.com",
+    databaseURL: "https://type-bad-words.firebaseio.com",
+    projectId: "type-bad-words",
+    storageBucket: "type-bad-words.appspot.com",
+    messagingSenderId: "419696050106",
+    appId: "1:419696050106:web:9a85519eca330818d2278-3"
+  };
+  // Initialize Firebase
+  firebase.initializeApp(firebaseConfig);
 
 let ScoresReference = firebase.database();
 let scoresRef = ScoresReference.ref('scores');
-function storeScore() {
-  scoresRef.push({
-    id: 'id',
-    score: 23456
-  })
-}
-storeScore();
+
+console.log(firebase.database().ref('scores').once('value').then(function(snapshot) {
+  return snapshot.val();
+}));
 /*==========================================
  */
 
@@ -148,6 +147,8 @@ function setCountDown(evt) {
       elementInputWord.value = '';
       elementInputWord.disabled = true;
       elementRestartButton.style.visibility = "visible";
+      //stores the score in firebase
+      storeScore(score);
     }
   }, INTERVAL_FACTOR);
 }
@@ -175,7 +176,7 @@ function validateWord(evt) {
       elementLevel.innerHTML = "Level: " + level;
     }
     previousWords.push(words[option]);
-    console.log(previousWords);
+    console.log('previous words: ' + previousWords);
     elementScore.innerHTML = "Score: " + score;
     evt.target.value = '';
     startGame();
@@ -183,3 +184,12 @@ function validateWord(evt) {
 }
 
 window.onload = init;
+
+
+function storeScore(firebase_score) {
+  scoresRef.push({
+    score: firebase_score
+  })
+}
+
+// storeScore();
