@@ -1,18 +1,28 @@
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries -->
 
+//API Keys
+const FIREBASE_API_KEY = config.FIREBASE_API_KEY;
+const FIREBASE_APP_ID = config.FIREBASE_APP_ID;
+const TWITTER_API_KEY = config.TWITTER_API_KEY;
+const TWITTER_API_SECRET_KEY = config.TWITTER_API_SECRET_KEY;
+const TWITTER_ACCESS_TOKEN = config.TWITTER_ACCESS_TOKEN;
+const TWITTER_ACCESS_TOKEN_SECRET = config.TWITTER_ACCESS_TOKEN_SECRET;
+
   // Your web app's Firebase configuration
   var firebaseConfig = {
-    apiKey: "---",
+    apiKey: FIREBASE_API_KEY,
     authDomain: "type-bad-words.firebaseapp.com",
     databaseURL: "https://type-bad-words.firebaseio.com",
     projectId: "type-bad-words",
     storageBucket: "type-bad-words.appspot.com",
     messagingSenderId: "419696050106",
-    appId: "1:419696050106:web:9a85519eca330818d2278-3"
+    appId: FIREBASE_APP_ID
   };
   // Initialize Firebase
   firebase.initializeApp(firebaseConfig);
+
+
 
 let ScoresReference = firebase.database();
 let scoresRef = ScoresReference.ref('scores');
@@ -207,7 +217,7 @@ function storeScore(firebase_score) {
     score: firebase_score
   })
 }
-
+//twitter code
 function generateTweet() {
   //stringify the words user typed
   let previousWordsStr = previousWords.toString();
@@ -216,4 +226,21 @@ function generateTweet() {
   console.log(tweetText);
 }
 
+
+function generateNonce() {
+  let nonce = '';
+  let possible = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+  let length = 42;
+  for (let j = 0; j < length; j++) {
+    nonce += possible.charAt(Math.floor(Math.random() * possible.length));
+  }
+  return nonce;
+}
+
+//twitter passport strategy
+
+
 // storeScore();
+
+//lucky semicolon, don't touch
+//;
