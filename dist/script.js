@@ -4,10 +4,7 @@
 //API Keys
 const FIREBASE_API_KEY = config.FIREBASE_API_KEY;
 const FIREBASE_APP_ID = config.FIREBASE_APP_ID;
-const TWITTER_API_KEY = config.TWITTER_API_KEY;
-const TWITTER_API_SECRET_KEY = config.TWITTER_API_SECRET_KEY;
-const TWITTER_ACCESS_TOKEN = config.TWITTER_ACCESS_TOKEN;
-const TWITTER_ACCESS_TOKEN_SECRET = config.TWITTER_ACCESS_TOKEN_SECRET;
+
 
   // Your web app's Firebase configuration
   var firebaseConfig = {
@@ -65,6 +62,7 @@ let elementCountDown;
 let elementTitleWord;
 let elementRandomWord;
 let elementMessage;
+let elementCandidates;
 // Variables
 let seconds = 0;
 let cancel;
@@ -73,6 +71,7 @@ let level = 1;
 let wordsCount = 0;
 let remainingTime;
 let score = 0;
+
 let words = [
   'domestic security',
   'assassination', 'emergency management', 'gangs', 'attack', 'emergency response', 'national security',
@@ -85,7 +84,7 @@ let words = [
   'listeria', 'exposure', 'plague', 'symptoms', 'virus', 'human to human', 'mutation', 'evacuation',
   'human to animal', 'resistant', 'bacteria', 'influenza', 'antiviral', 'recall', 'center for disease control', 'wave', 'ebola', 'cdc', 'pandemic', 'food poisoning', 'drug administration', 'fda', 'infection', 'foot and mouth', 'public health', 'water borne', 'air borne', 'h5ni', 'toxic', 'sick',
   'avian', 'agro terror', 'swine flu', 'tuberculosis', 'tb', 'pork', 'strain', 'tamiflu', 'world health organization', 'quarantine', 'norvo virus', 'who', 'h1n1', 'epidemic', 'viral', 'hemorrhagic fever', 'vaccine', 'e coli', 'infrastructure security', 'airplane', 'airport', 'chemical fire', 'cikr',
-  'critical infrastructure', 'subway', 'electric', 'key resources', 'bart', 'failure or outage', 'amtrak', 'marta', 'black out', 'collapse', 'port authority', 'brown out', 'computer infrastructure',
+  'critical infrastructure', 'subway', 'electric', 'key resources', 'bart', 'failure', 'outage', 'amtrak', 'marta', 'black out', 'collapse', 'port authority', 'brown out', 'computer infrastructure',
   'nbic', 'national biosurveillance integration center', 'port communications', 'dock', 'infrastructure', 'bridge', 'telecommunications', 'transportation security', 'cancelled', 'grid', 'delays', 'national infrastructure', 'power', 'service disruption', 'metro', 'smart', 'power lines',
   'wiviata', 'body scanner', 'southwest border violence', 'drug cartel', 'fort hancock', 'gunfight', 'violence', 'san diego', 'trafficking', 'gang', 'ciudad juarez', 'kidnap', 'drug', 'nogales', 'calderon', 'narcotics', 'sonora', 'reyosa', 'cocaine', 'colombia', 'bust', 'marijuana', 'mara salvatrucha', 'tamaulipas', 'heroin', 'ms is', 'ms-i3', 'meth lab', 'border', 'drug war', 'drug trade',
   'mexico', 'mexican army', 'illegal immigrants', 'cartel', 'methamphetamine', 'smuggling', 'smugglers', 'southwest', 'cartel de golfo', 'matamoros', 'juarez', 'gulf cartel', 'michoacana', 'sinaloa', 'la familia', 'guzman', 'tijuana', 'reynosa', 'arellano-felix', 'tonvon', 'nuevo leon', 'beltran-leyva',
@@ -113,6 +112,7 @@ function init(evt) {
   elementTitleWord = document.querySelector('#titleWord');
   elementRandomWord = document.querySelector('#randomWord');
   elementMessage = document.querySelector('#message');
+  elementCandidates = document.querySelector('.element-candidates');
   elementStartButton.addEventListener('click', startGame);
   elementRestartButton.addEventListener('click', restartGame);
   elementRestartButton.style.display = "block";
@@ -218,17 +218,92 @@ function storeScore(firebase_score) {
   })
 }
 
-//open secrets data
-let OPEN_SECRETS_API_KEY = config.OPEN_SECRETS_API_KEY;
-var convert = require(['./node_modules/xml-js/dist/xml-js.js']);
+//open geocoder data
+let USGEOCODER_API_KEY = config.USGEOCODER_API_KEY;
+// var convert = require(['xml-js']);
 
-fetch('https://cors-anywhere.herokuapp.com/opensecrets.org/api/?method=candContrib&cid=N00007360&cycle=2020&apikey=' + OPEN_SECRETS_API_KEY)
-  .then((response)=>{
-    console.log(response);
-    return response;
-  }).then((res)=>{
-    console.log(res)
-  })
+//open secrets data
+// function reqListener () {
+//   var x2js = new X2JS();
+//   let xml = this.responseText;
+//   console.log(xml);
+//   let converted = {};
+//   converted = x2js.xml2json(xml);
+//   console.log(converted);
+//   // console.log(xmlToJson(responseText));
+// }
+// var oReq = new XMLHttpRequest();
+// oReq.addEventListener("load", reqListener);
+// oReq.open("GET", "https://www.opensecrets.org/api/?method=candContrib&cid=N00007360&cycle=2020&apikey=8b37dbe3a79790b23575afe6b22e3e22");
+// oReq.send();
+// committees/C00458463.json
+
+fetch("https://api.propublica.org/campaign-finance/v1/2018/candidates/leaders/pac-total.json", {
+    headers: {
+        'X-API-Key': config.PRO_PUB_API_KEY
+    }
+}).then((res)=>{
+    return res.json();
+}).then((data)=>{
+    let candList = data.results
+    console.log(candList);
+    // console.log(data.results);
+    candList.forEach((index)=>{
+      let party = index.party.charAt(0);
+      let pacMoney = index.total_from_pacs;
+      let pacMoneyCommas = ' $' + numberWithCommas(pacMoney);
+      let name = index.name;
+      let fullName = name.split(',');
+      let fName =  fullName[1] + ' ';
+      let lName =  fullName[0] + ' (' + party + ')';
+      let candidate = fName + lName;
+      generateWrapper(candidate, pacMoneyCommas);
+    })
+});
+
+function numberWithCommas(x) {
+    return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+}
+
+function generateWrapper(name, money) {
+  let candWrapper = document.createElement('div');
+  candWrapper.setAttribute('class', 'candidate-wrapper');
+  candWrapper.innerHTML = generateCandidate(name, money);
+  elementCandidates.append(candWrapper);
+}
+
+function generateCandidate(name, money) {
+  let html = '<p class="candidate">' + name +
+             ':</p>' +
+             '<span class="pac-money">' + money +
+             '</span>';
+  return html;
+}
+
+// //twitter code
+function generateTweet() {
+  //stringify the words user typed
+  let previousWordsStr = previousWords.toString();
+  let previousWordsStrReplaced = previousWordsStr.replace(/,/g, ', ');
+  tweetWords = previousWordsStrReplaced.substring(0, 241);
+  let tweetText = 'These words were typed by redacted: ' + tweetWords + '...';
+  elementTweetText.innerHTML = tweetText;
+  console.log(tweetText);
+}
+let elementTweetText = document.querySelector('.tweet-text');
+
+//THIS WORKS!!!!
+// fetch('https://strainapi.evanbusse.com/PIHNBxp/searchdata/flavors')
+//   .then((response)=>{
+//     return response.json();
+//   })
+//   .then((res)=>{
+//     console.log(res[0].toLowerCase());
+//     res.forEach(el => words.push(el.toLowerCase()));
+//     console.log(words);
+//   });
+
+
 
   // Changes XML to JSON
 // Modified version from here: http://davidwalsh.name/convert-xml-json
@@ -272,14 +347,7 @@ fetch('https://cors-anywhere.herokuapp.com/opensecrets.org/api/?method=candContr
 //   return obj;
 // }
 
-// //twitter code
-// function generateTweet() {
-//   //stringify the words user typed
-//   let previousWordsStr = previousWords.toString();
-//   tweetWords = previousWordsStr.substring(0, 241);
-//   let tweetText = 'These words were typed by redacted: ' + tweetWords + '...';
-//   console.log(tweetText);
-// }
+
 //
 //
 // function generateNonce() {

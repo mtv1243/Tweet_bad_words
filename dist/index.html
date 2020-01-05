@@ -7,6 +7,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="./style.css">
     <title>Typing or Dead</title>
+
 </head>
 <body>
   <!-- The core Firebase JS SDK is always required and must be listed first -->
@@ -28,20 +29,41 @@
         </div>
         <div id = "message"></div>
         <button  type="submit" id = "restartButton">PLAY AGAIN</button>
-        <div class="hs-wrapper">
-          <p class="hs-title">High Scores:</p>
-          <ul id="high-scores">
-            <li class="hs hs0"></li>
-            <li class="hs hs1"></li>
-            <li class="hs hs2"></li>
-            <li class="hs hs3"></li>
-            <li class="hs hs4"></li>
-          </ul>
+        <div id="modal">
+          <div class="modal-content">
+  <!-- tweet wrapper -->
+            <div class="tweet-wrapper">
+              <h3 class="tweet-title">Tweet your score!</h3>
+              <h4 class="tweet-description">See? These words aren't different from any others.</h4>
+              <p class="tweet-cp">Just copy your score below to tweet it! (don't worry, it's under the character limit)</p>
+              <p class="tweet-text"></p>
+            </div>
+  <!-- High scores -->
+            <div class="hs-wrapper">
+              <p class="hs-title">High Scores:</p>
+              <ul id="high-scores">
+                <li class="hs hs0"></li>
+                <li class="hs hs1"></li>
+                <li class="hs hs2"></li>
+                <li class="hs hs3"></li>
+                <li class="hs hs4"></li>
+              </ul>
+            </div>
+  <!-- candidates list -->
+            <div class="element-candidates">
+              <h3 class="candidates-title">Congress members who received the most PAC money in the 2018 election cycle:</h3>
+              <div class="candidate-wrapper">
+              <p class="candidate"></p><span class="pac-money"></span>
+              </div>
+            </div>
+  <!-- close modal content -->
         </div>
+  <!-- close modal -->
+      </div>
+  <!-- close game box -->
     </div>
-  <script src="./require.js"></script>
   <script src="./config.js"></script>
+  <script src="./xml2json.js"></script>
   <script src="./script.js"></script>
-
 </body>
 </html>

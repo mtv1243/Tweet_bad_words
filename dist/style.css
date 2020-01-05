@@ -1,5 +1,5 @@
 #inputWord {
-    display: none;  
+    display: none;
     margin-left : auto;
     margin-right : auto;
     margin-top: 5px;
@@ -27,7 +27,7 @@
     height: 250px;
     position: relative;
     top : 50px;
-    left: 250px;   
+    left: 250px;
 }
 
 h1, h2{
@@ -50,10 +50,10 @@ h1{
 }
 
 .progressBar{
-    height: 10px;    
+    height: 10px;
     display: block;
     margin-left: 110px;
-    animation-name: countDown;  
+    animation-name: countDown;
     clear: both;
 }
 
@@ -78,4 +78,12 @@ h1{
     0% {background-color: green;}
     40%{background-color: yellowgreen}
     70%{background-color: red;}
+}
+
+/*======================
+    candidates styles
+=======================*/
+
+.candidate {
+  display: inline;
 }
