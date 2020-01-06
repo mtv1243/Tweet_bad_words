@@ -88,7 +88,7 @@ let words = [
   'avian', 'agro terror', 'swine flu', 'tuberculosis', 'tb', 'pork', 'strain', 'tamiflu', 'world health organization', 'quarantine', 'norvo virus', 'who', 'h1n1', 'epidemic', 'viral', 'hemorrhagic fever', 'vaccine', 'e coli', 'infrastructure security', 'airplane', 'airport', 'chemical fire', 'cikr',
   'critical infrastructure', 'subway', 'electric', 'key resources', 'bart', 'failure', 'outage', 'amtrak', 'marta', 'black out', 'collapse', 'port authority', 'brown out', 'computer infrastructure',
   'nbic', 'national biosurveillance integration center', 'port communications', 'dock', 'infrastructure', 'bridge', 'telecommunications', 'transportation security', 'cancelled', 'grid', 'delays', 'national infrastructure', 'power', 'service disruption', 'metro', 'smart', 'power lines',
-  'wiviata', 'body scanner', 'southwest border violence', 'drug cartel', 'fort hancock', 'gunfight', 'violence', 'san diego', 'trafficking', 'gang', 'ciudad juarez', 'kidnap', 'drug', 'nogales', 'calderon', 'narcotics', 'sonora', 'reyosa', 'cocaine', 'colombia', 'bust', 'marijuana', 'mara salvatrucha', 'tamaulipas', 'heroin', 'ms is', 'ms-i3', 'meth lab', 'border', 'drug war', 'drug trade',
+  'wiviata', 'body scanner', 'southwest border violence', 'drug cartel', 'fort hancock', 'gunfight', 'violence', 'san diego', 'trafficking', 'gang', 'ciudad juarez', 'kidnap', 'drug', 'nogales', 'calderon', 'narcotics', 'sonora', 'reyosa', 'cocaine', 'colombia', 'bust', 'marijuana', 'mara salvatrucha', 'tamaulipas', 'heroin', 'ms is', 'ms-13', 'meth lab', 'border', 'drug war', 'drug trade',
   'mexico', 'mexican army', 'illegal immigrants', 'cartel', 'methamphetamine', 'smuggling', 'smugglers', 'southwest', 'cartel de golfo', 'matamoros', 'juarez', 'gulf cartel', 'michoacana', 'sinaloa', 'la familia', 'guzman', 'tijuana', 'reynosa', 'arellano-felix', 'tonvon', 'nuevo leon', 'beltran-leyva',
   'yuma', 'narcos', 'barrio azteca', 'tucson', 'narco banners', 'artistic assassins', 'decapitated', 'mexicles', 'u.s. consulate', 'los zetas', 'new federation', 'consular', 'shootout', 'el paso',
   'execution', 'terrorism', 'ied', 'suspicious substance', 'al qaeda', 'aqap', 'arabian peninsula',
@@ -245,7 +245,7 @@ let USGEOCODER_API_KEY = config.USGEOCODER_API_KEY;
 // oReq.send();
 // committees/C00458463.json
 
-fetch("https://api.propublica.org/campaign-finance/v1/2018/candidates/leaders/pac-total.json", {
+fetch("https://cors-anywhere.herokuapp.com/api.propublica.org/campaign-finance/v1/2018/candidates/leaders/pac-total.json", {
     headers: {
         'X-API-Key': config.PRO_PUB_API_KEY
     }
