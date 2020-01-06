@@ -1,3 +1,7 @@
+@import url('https://fonts.googleapis.com/css?family=Roboto+Mono:400,700|Roboto+Slab:400,700&display=swap');
+
+@import url('https://fonts.googleapis.com/css?family=Source+Sans+Pro&display=swap');
+
 #inputWord {
     display: none;
     margin-left : auto;
@@ -22,15 +26,19 @@
 }
 
 #gameContainer{
-    border: solid 2px red;
-    width: 400px;
-    height: 250px;
-    position: relative;
-    top : 50px;
-    left: 250px;
+    border: solid 1px #000;
+    width: 420px;
+    margin-top: 40px;
+    margin-left: auto;
+    margin-right: auto;
+    box-sizing: border-box;
+    padding: 25px;
+    box-shadow: 0px 0px 20px rgba(0,0,0,.5);
+    font-family: 'Roboto Mono', serif;
 }
 
 h1, h2{
+    font-family: 'Roboto Slab', serif;
     text-align: center;
     margin: 0px auto 5px auto;
     clear: both;
@@ -47,6 +55,7 @@ h1{
     display: block;
     width: 200px;
     height: 50px;
+    font-family: 'Roboto Slab', serif;
 }
 
 .progressBar{
@@ -81,9 +90,94 @@ h1{
 }
 
 /*======================
+    modal styles
+======================*/
+
+#modal {
+  /* display: none; */
+}
+
+/*====================
+    tweet styles
+    =================*/
+.tweet-wrapper {
+  margin-top: 50px;
+}
+
+.sample-tweet {
+  font-family: 'Source Sans Pro', sans-serif;
+  border: 1px solid #DEDEDE;
+  border-radius: 5px;
+  box-sizing: border-box;
+  padding: 10px;
+}
+
+.name-wrapper {
+  display: flex;
+  align-items: center;
+}
+
+.st-img-wrapper {
+  height: 50px;
+  width: 50px;
+  margin-right: 10px;
+  border-radius: 50%;
+  overflow: hidden;
+  background-image: url('https://res.cloudinary.com/mtv1243/image/upload/v1547863230/joe-keohan.jpg');
+  background-size: contain;
+  background-repeat: no-repeat;
+}
+
+.st-name {
+  font-size: 22px;
+  font-weight: 700;
+  margin: 0;
+  cursor: pointer;
+}
+
+.st-name:hover {
+  color: #2b7bb9;
+}
+
+.st-handle {
+  margin: 0;
+}
+
+.twit-logo-wrapper {
+  margin-right: 15px;
+  flex-grow: 2;
+  text-align: right;
+  color: #2b7bb9;
+}
+
+.st-meta {
+  border-top: 1px solid #DEDEDE;
+  box-sizing: border-box;
+  padding: 10px;
+}
+
+.heart {
+  margin-right: 10px;
+}
+
+.fa-heart {
+  font-size: .9rem;
+  margin-right: 5px;
+}
+
+/*======================
     candidates styles
 =======================*/
 
 .candidate {
   display: inline;
+  cursor: pointer;
+}
+
+.candidate:hover {
+  font-weight: 700;
+}
+
+.hidden {
+  display: none;
 }

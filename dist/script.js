@@ -63,6 +63,8 @@ let elementTitleWord;
 let elementRandomWord;
 let elementMessage;
 let elementCandidates;
+let elementTweetText;
+let $modal;
 // Variables
 let seconds = 0;
 let cancel;
@@ -113,6 +115,9 @@ function init(evt) {
   elementRandomWord = document.querySelector('#randomWord');
   elementMessage = document.querySelector('#message');
   elementCandidates = document.querySelector('.element-candidates');
+  elementTweetText = document.querySelector('.tweet-text');
+  $modal = $('#modal');
+  //
   elementStartButton.addEventListener('click', startGame);
   elementRestartButton.addEventListener('click', restartGame);
   elementRestartButton.style.display = "block";
@@ -143,7 +148,6 @@ function startGame(evt) {
   elementRandomWord.innerHTML = words[option];
   elementRandomWord.style.color = "red";
   elementInputWord.addEventListener('input', validateWord);
-
 }
 
 function restartGame(evt) {
@@ -156,11 +160,13 @@ function restartGame(evt) {
   elementRestartButton.style.visibility = "hidden";
   elementMessage.innerHTML = '';
   startGame();
+  // $modal.slideToggle();
 }
 
 function hideHeaders() {
   document.querySelector('h1').style.display = "none";
   document.querySelector('h2').style.display = "none";
+  document.querySelector('.explanation').style.display = 'none';
 }
 
 function setCountDown(evt) {
@@ -176,6 +182,7 @@ function setCountDown(evt) {
       storeScore(score);
       // generate the tweet text
       generateTweet();
+      // $modal.slideToggle();
     }
   }, INTERVAL_FACTOR);
 }
@@ -243,6 +250,7 @@ fetch("https://api.propublica.org/campaign-finance/v1/2018/candidates/leaders/pa
         'X-API-Key': config.PRO_PUB_API_KEY
     }
 }).then((res)=>{
+
     return res.json();
 }).then((data)=>{
     let candList = data.results
@@ -258,6 +266,14 @@ fetch("https://api.propublica.org/campaign-finance/v1/2018/candidates/leaders/pa
       let lName =  fullName[0] + ' (' + party + ')';
       let candidate = fName + lName;
       generateWrapper(candidate, pacMoneyCommas);
+    })
+    let elementCandidates = document.querySelector('.element-candidates');
+    elementCandidates.addEventListener('click', (event)=>{
+      let target = event.target;
+      console.log(target.nextSibling);
+      if(target.className === 'candidate') {
+        target.nextSibling.classList.remove('hidden');
+      }
     })
 });
 
@@ -275,7 +291,7 @@ function generateWrapper(name, money) {
 function generateCandidate(name, money) {
   let html = '<p class="candidate">' + name +
              ':</p>' +
-             '<span class="pac-money">' + money +
+             '<span class="pac-money hidden">' + money +
              '</span>';
   return html;
 }
@@ -290,7 +306,7 @@ function generateTweet() {
   elementTweetText.innerHTML = tweetText;
   console.log(tweetText);
 }
-let elementTweetText = document.querySelector('.tweet-text');
+
 
 //THIS WORKS!!!!
 // fetch('https://strainapi.evanbusse.com/PIHNBxp/searchdata/flavors')

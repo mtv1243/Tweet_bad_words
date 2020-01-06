@@ -6,16 +6,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="./style.css">
-    <title>Typing or Dead</title>
-
+    <script src="https://kit.fontawesome.com/74268939d2.js" crossorigin="anonymous"></script>
+    <title>Type bad words</title>
 </head>
 <body>
   <!-- The core Firebase JS SDK is always required and must be listed first -->
 <script src="https://www.gstatic.com/firebasejs/7.6.1/firebase.js"></script>
 
     <div id="gameContainer">
-        <h1>Typing or Dead</h1>
-        <h2>Enter the word before the time bar ends</h2>
+        <h1>Type Bad Words</h1>
+        <h2>Practice typing words the government doesn't want you to type!</h2>
+        <p class="explanation">In 2012 a court order forced The Department of Homeland Security release a list of words it uses to monitor social media networks. These words were described as "signs of terrorist or other threats against the United States." See how many you can type in the time given. Some of the words might surprise you!</p>
         <button type="submit" id = "startButton">START GAME</button>
         <h2 id = "titleWord"></h2>
         <h2 id = "randomWord"></h2>
@@ -33,14 +34,28 @@
           <div class="modal-content">
   <!-- tweet wrapper -->
             <div class="tweet-wrapper">
-              <h3 class="tweet-title">Tweet your score!</h3>
-              <h4 class="tweet-description">See? These words aren't different from any others.</h4>
-              <p class="tweet-cp">Just copy your score below to tweet it! (don't worry, it's under the character limit)</p>
-              <p class="tweet-text"></p>
+              <h2 class="tweet-title">Tweet your score!</h2>
+              <h3 class="tweet-description">See? These words aren't different from any others.</h3>
+              <p class="tweet-cp">Just copy your words below to tweet them! (don't worry, it's under the character limit)</p>
+              <div class="sample-tweet">
+                <div class="name-wrapper">
+                  <div class="st-img-wrapper"></div>
+                  <div class="name-flex">
+                    <p class="st-name">Beautiful Person</p>
+                    <p class="st-handle">@you_are_cool</p>
+                  </div>
+                  <div class="twit-logo-wrapper"><i class="fab fa-twitter"></i></div>
+                </div>
+                <p class="tweet-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Maxime ad labore laborum eius quae commodi sed. Numquam a, dicta asperiores tempore molestiae, possimus incidunt fugit at, consequatur sunt, quo minima!</p>
+                <div class="st-meta">
+                  <span class="heart"><i class="far fa-heart"></i>5,220</span>
+                  <span class="time">5:20 PM - April 20, 2020</span>
+                </div>
+              </div>
             </div>
   <!-- High scores -->
             <div class="hs-wrapper">
-              <p class="hs-title">High Scores:</p>
+              <p class="hs-title">Previous High Scores:</p>
               <ul id="high-scores">
                 <li class="hs hs0"></li>
                 <li class="hs hs1"></li>
@@ -51,10 +66,9 @@
             </div>
   <!-- candidates list -->
             <div class="element-candidates">
-              <h3 class="candidates-title">Congress members who received the most PAC money in the 2018 election cycle:</h3>
-              <div class="candidate-wrapper">
-              <p class="candidate"></p><span class="pac-money"></span>
-              </div>
+              <h3 class="candidates-title">Speaking of things the governemnt doesn't want you to talk about...</h3>
+              <p class="cand-description">Click the names of the representatives below to see how much their campaigns recieved in PAC money in the 2018 cycle.</p>
+              <div class="candidate-wrapper"></div>
             </div>
   <!-- close modal content -->
         </div>
@@ -62,8 +76,11 @@
       </div>
   <!-- close game box -->
     </div>
+  <script
+  src="https://code.jquery.com/jquery-3.4.1.js"
+  integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="
+  crossorigin="anonymous"></script>
   <script src="./config.js"></script>
-  <script src="./xml2json.js"></script>
   <script src="./script.js"></script>
 </body>
 </html>
