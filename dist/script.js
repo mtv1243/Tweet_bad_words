@@ -245,7 +245,7 @@ let USGEOCODER_API_KEY = config.USGEOCODER_API_KEY;
 // oReq.send();
 // committees/C00458463.json
 
-fetch("https://cors-anywhere.herokuapp.com/api.propublica.org/campaign-finance/v1/2018/candidates/leaders/pac-total.json", {
+fetch("https://api.propublica.org/campaign-finance/v1/2018/candidates/leaders/pac-total.json", {
     headers: {
         'X-API-Key': config.PRO_PUB_API_KEY
     }
