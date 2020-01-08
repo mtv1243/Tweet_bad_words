@@ -26,6 +26,7 @@
 }
 
 #gameContainer{
+  text-align: justify;
     width: 460px;
     margin-top: 40px;
     margin-left: auto;
@@ -44,7 +45,25 @@ h1, h2{
 }
 
 h1{
+  position: relative;
     margin-top: 10px;
+}
+
+.strikethrough::before {
+  content: '';
+  display: inline-block;
+  position: absolute;
+  top: 22px;
+  width: 170px;
+  animation-name: add-strikethrough;
+  animation-delay: .75s;
+  animation-duration: 1.5s;
+  animation-fill-mode: forwards;
+}
+
+@keyframes add-strikethrough {
+  from {border-top: 5px solid transparent;}
+  to {border-top: 5px solid #000;}
 }
 
 #startButton{

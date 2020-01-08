@@ -40,10 +40,20 @@ scoresRef.once('value').then(function(snapshot) {
     let elementHS = document.querySelector('.hs' + i);
     elementHS.innerHTML = 'redacted: ' + highScores[i];
   }
-
 });
 /*==========================================
  */
+
+ /*=========== strikethrough delay ========*/
+
+ let strikethrough = document.querySelector('h1 > span');
+ let delayStrikethrough=()=>{
+   setTimeout(()=>{
+     console.log('delay');
+     strikethrough.classList.add('strikethrough');
+   }, 500)
+ };
+// delayStrikethrough();
 
 //Constants
 const SUBSTRACTION_TIME = 0.01;
