@@ -35,7 +35,7 @@ scoresRef.once('value').then(function(snapshot) {
   //arrange the high scores in descending order
   highScores.sort((num1, num2)=>{return (num2-num1)});
 
-  //insert the high scores into the page
+  //insert the first 5 high scores into the page
   for (let i = 0; i<5; i++){
     let elementHS = document.querySelector('.hs' + i);
     elementHS.innerHTML = 'redacted: ' + highScores[i];
@@ -85,7 +85,7 @@ let words = [
   'plume', 'industrial spill', 'sarin', 'radiation', 'infection', 'north korea', 'radioactive', 'white powder', 'health concern', 'outbreak', 'salmonella', 'agriculture', 'contamination', 'small pox',
   'listeria', 'exposure', 'plague', 'symptoms', 'virus', 'human to human', 'mutation', 'evacuation',
   'human to animal', 'resistant', 'bacteria', 'influenza', 'antiviral', 'recall', 'center for disease control', 'wave', 'ebola', 'cdc', 'pandemic', 'food poisoning', 'drug administration', 'fda', 'infection', 'foot and mouth', 'public health', 'water borne', 'air borne', 'h5ni', 'toxic', 'sick',
-  'avian', 'agro terror', 'swine flu', 'tuberculosis', 'tb', 'pork', 'strain', 'tamiflu', 'world health organization', 'quarantine', 'norvo virus', 'who', 'h1n1', 'epidemic', 'viral', 'hemorrhagic fever', 'vaccine', 'e coli', 'infrastructure security', 'airplane', 'airport', 'chemical fire', 'cikr',
+  'avian', 'agro terror', 'swine flu', 'tuberculosis', 'tb', 'pork', 'strain', 'tamiflu', 'world health organization', 'quarantine', 'norovirus', 'who', 'h1n1', 'epidemic', 'viral', 'hemorrhagic fever', 'vaccine', 'e coli', 'infrastructure security', 'airplane', 'airport', 'chemical fire', 'cikr',
   'critical infrastructure', 'subway', 'electric', 'key resources', 'bart', 'failure', 'outage', 'amtrak', 'marta', 'black out', 'collapse', 'port authority', 'brown out', 'computer infrastructure',
   'nbic', 'national biosurveillance integration center', 'port communications', 'dock', 'infrastructure', 'bridge', 'telecommunications', 'transportation security', 'cancelled', 'grid', 'delays', 'national infrastructure', 'power', 'service disruption', 'metro', 'smart', 'power lines',
   'wiviata', 'body scanner', 'southwest border violence', 'drug cartel', 'fort hancock', 'gunfight', 'violence', 'san diego', 'trafficking', 'gang', 'ciudad juarez', 'kidnap', 'drug', 'nogales', 'calderon', 'narcotics', 'sonora', 'reyosa', 'cocaine', 'colombia', 'bust', 'marijuana', 'mara salvatrucha', 'tamaulipas', 'heroin', 'ms is', 'ms-13', 'meth lab', 'border', 'drug war', 'drug trade',
@@ -138,6 +138,7 @@ function startGame(evt) {
   hideHeaders();
   setItems();
   setCountDown();
+  revealCandidates();
   elementScore.innerHTML = "Score: " + score;
   elementLevel.innerHTML = "Level: " + level;
   elementCountDown.classList.remove("progressBar");
@@ -210,7 +211,7 @@ function validateWord(evt) {
       elementLevel.innerHTML = "Level: " + level;
     }
     previousWords.push(words[option]);
-    console.log('previous words: ' + previousWords);
+    // console.log('previous words: ' + previousWords);
     elementScore.innerHTML = "Score: " + score;
     evt.target.value = '';
     startGame();
@@ -245,12 +246,12 @@ let USGEOCODER_API_KEY = config.USGEOCODER_API_KEY;
 // oReq.send();
 // committees/C00458463.json
 
+//get candidates from pro publica
 fetch("https://api.propublica.org/campaign-finance/v1/2018/candidates/leaders/pac-total.json", {
     headers: {
         'X-API-Key': config.PRO_PUB_API_KEY
     }
 }).then((res)=>{
-
     return res.json();
 }).then((data)=>{
     let candList = data.results
@@ -267,6 +268,7 @@ fetch("https://api.propublica.org/campaign-finance/v1/2018/candidates/leaders/pa
       let candidate = fName + lName;
       generateWrapper(candidate, pacMoneyCommas);
     })
+    //reveal dollar amount when user clicks candidate name
     let elementCandidates = document.querySelector('.element-candidates');
     elementCandidates.addEventListener('click', (event)=>{
       let target = event.target;
@@ -277,15 +279,18 @@ fetch("https://api.propublica.org/campaign-finance/v1/2018/candidates/leaders/pa
     })
 });
 
+//format the dollar amount to have commas every three digits
 function numberWithCommas(x) {
     return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 }
 
+//create list item for each candidate to inhabit
+let elementCandidateOL = document.querySelector('.candidate-ol');
 function generateWrapper(name, money) {
-  let candWrapper = document.createElement('div');
-  candWrapper.setAttribute('class', 'candidate-wrapper');
+  let candWrapper = document.createElement('li');
+  candWrapper.setAttribute('class', 'candidate-wrapper hidden');
   candWrapper.innerHTML = generateCandidate(name, money);
-  elementCandidates.append(candWrapper);
+  elementCandidateOL.append(candWrapper);
 }
 
 function generateCandidate(name, money) {
@@ -294,6 +299,22 @@ function generateCandidate(name, money) {
              '<span class="pac-money hidden">' + money +
              '</span>';
   return html;
+}
+
+//reveal candidates as user socre increases
+let candCounter = 0;
+function revealCandidates() {
+    let candList = document.querySelectorAll('.candidate-wrapper');
+    candCounter = (Math.floor((score-500) / 500)) + 1;
+    // console.log(candList[(candCounter + 1)]);
+    if(candList[(candCounter)]) {
+      console.log('candCounter is ' + candCounter);
+      candList[candCounter].classList.remove('hidden');
+      console.log(candList);
+      return candCounter;
+  } else {
+    console.log('you win! candCounter is ' + candCounter);
+  }
 }
 
 // //twitter code
@@ -306,6 +327,7 @@ function generateTweet() {
   elementTweetText.innerHTML = tweetText;
   console.log(tweetText);
 }
+
 
 
 //THIS WORKS!!!!

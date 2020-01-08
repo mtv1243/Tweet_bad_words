@@ -16,7 +16,7 @@
     <div id="gameContainer">
         <h1>Type Bad Words</h1>
         <h2>Practice typing words the government doesn't want you to type!</h2>
-        <p class="explanation">In 2012 a court order forced The Department of Homeland Security release a list of words it uses to monitor social media networks. These words were described as "signs of terrorist or other threats against the United States." See how many you can type in the time given. Some of the words might surprise you!</p>
+        <p class="explanation">In 2012 a court order forced The Department of Homeland Security release a list of words it uses to monitor social media networks. These words were described as "signs of terrorist or other threats against the United States," but many say the words are too ambiguous to effectively track anything. <br>Anyway, score 10,000 points to reveal the 20 of Congress members who accepted the most PAC money in the 2018 cycle!</p>
         <button type="submit" id = "startButton">START GAME</button>
         <h2 id = "titleWord"></h2>
         <h2 id = "randomWord"></h2>
@@ -34,7 +34,7 @@
           <div class="modal-content">
   <!-- tweet wrapper -->
             <div class="tweet-wrapper">
-              <h2 class="tweet-title">Tweet your score!</h2>
+              <h2 class="tweet-title">Tweet your words!</h2>
               <h3 class="tweet-description">See? These words aren't different from any others.</h3>
               <p class="tweet-cp">Just copy your words below to tweet them! (don't worry, it's under the character limit)</p>
               <div class="sample-tweet">
@@ -66,9 +66,10 @@
             </div>
   <!-- candidates list -->
             <div class="element-candidates">
-              <h3 class="candidates-title">Speaking of things the governemnt doesn't want you to talk about...</h3>
+              <h3 class="candidates-title">Speaking of things the governemnt doesn't want to talk about...</h3>
               <p class="cand-description">Click the names of the representatives below to see how much their campaigns recieved in PAC money in the 2018 cycle.</p>
-              <div class="candidate-wrapper"></div>
+              <ol class="candidate-ol"></ol>
+              <!-- <div class="candidate-wrapper"></div> -->
             </div>
   <!-- close modal content -->
         </div>
