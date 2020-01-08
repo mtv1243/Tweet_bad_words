@@ -268,6 +268,14 @@ fetch("https://api.propublica.org/campaign-finance/v1/2018/candidates/leaders/pa
       let candidate = fName + lName;
       generateWrapper(candidate, pacMoneyCommas);
     })
+    // .catch((error)=>{
+    //   console.log(error);
+    //   let gameContianer = document.getElementById('gameContainer');
+    //   gameContainer.innerHTML = '<h2>There has been a problem retrieving some remote information. Please refresh the page to see the candidates.</h2>';
+      // let candidateOL = document.querySelector('.candidate-ol');
+      // candidateOL.innerHTML = '<h4>There has been a problem retrieving some remote information. Please refresh the page to see the candidates.</h4>';
+    // })
+    
     //reveal dollar amount when user clicks candidate name
     let elementCandidates = document.querySelector('.element-candidates');
     elementCandidates.addEventListener('click', (event)=>{
@@ -311,7 +319,7 @@ function revealCandidates() {
     if(candList[(candCounter)]) {
       console.log('candCounter is ' + candCounter);
       candList[candCounter].classList.remove('hidden');
-      numOfCandidates.innerHTML = 'Great job! You revealed ' + candCounter + 'candidates!';
+      numOfCandidates.innerHTML = 'Great job! You revealed ' + (candCounter+1) + ' candidates!';
       console.log(candList);
       return candCounter;
   } else {
