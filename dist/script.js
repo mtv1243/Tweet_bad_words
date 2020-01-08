@@ -161,7 +161,7 @@ function restartGame(evt) {
   elementRestartButton.style.visibility = "hidden";
   elementMessage.innerHTML = '';
   startGame();
-  // $modal.slideToggle();
+  $modal.slideToggle();
 }
 
 function hideHeaders() {
@@ -183,7 +183,7 @@ function setCountDown(evt) {
       storeScore(score);
       // generate the tweet text
       generateTweet();
-      // $modal.slideToggle();
+      $modal.slideToggle();
     }
   }, INTERVAL_FACTOR);
 }
@@ -303,6 +303,7 @@ function generateCandidate(name, money) {
 
 //reveal candidates as user socre increases
 let candCounter = 0;
+let numOfCandidates = document.querySelector('.num-of-candidates');
 function revealCandidates() {
     let candList = document.querySelectorAll('.candidate-wrapper');
     candCounter = (Math.floor((score-500) / 500)) + 1;
@@ -310,6 +311,7 @@ function revealCandidates() {
     if(candList[(candCounter)]) {
       console.log('candCounter is ' + candCounter);
       candList[candCounter].classList.remove('hidden');
+      numOfCandidates.innerHTML = 'Great job! You revealed ' + candCounter + 'candidates!';
       console.log(candList);
       return candCounter;
   } else {

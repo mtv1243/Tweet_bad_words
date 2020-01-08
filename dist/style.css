@@ -93,7 +93,7 @@ h1{
 ======================*/
 
 #modal {
-  /* display: none; */
+  display: none;
 }
 
 /*====================
@@ -179,4 +179,10 @@ h1{
 
 .hidden {
   display: none;
+}
+
+@media only screen and (max-width: 480px) {
+  #gameContainer{
+      box-shadow: none;
+    }
 }
