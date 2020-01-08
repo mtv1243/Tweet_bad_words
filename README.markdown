@@ -6,6 +6,14 @@ In 2012 a court order forced The Department of Homeland Security release a list 
 
 I thought people should be able to see the words and decide for themselves if they're really that dangerous.
 
-Anyway, score 10,000 points to reveal the 20 of Congress members who accepted the most PAC money in the 2018 cycle!
+Here's a quick article if you want to learn more or see the entire list of words: [Dept. of Homeland Security Forced to Release List of Keywords Used to Monitor Social Networking Sites](https://www.forbes.com/sites/reuvencohen/2012/05/26/department-of-homeland-security-forced-to-release-list-of-keywords-used-to-monitor-social-networking-sites/#55e3f082acd0)
+
+#### Practice your typing skills
+
+Now you can practice your typing skills by anonymously typing words from the DHS list. The app will save the words you type and compose a tweet from them after you're finished.
+
+#### How to win
+
+Every 500 points you reveal the name of a congressional candidate who took PAC money in the 2018 election cycle. Score 10,000 points to reveal all 20 candidates!
 
  _A Pen created at CodePen.io. Original URL: [https://codepen.io/mtv1243/pen/GRgEagK](https://codepen.io/mtv1243/pen/GRgEagK).
