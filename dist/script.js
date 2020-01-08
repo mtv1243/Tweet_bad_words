@@ -64,6 +64,7 @@ let elementRandomWord;
 let elementMessage;
 let elementCandidates;
 let elementTweetText;
+let elementCandidateOL;
 let $modal;
 // Variables
 let seconds = 0;
@@ -116,6 +117,7 @@ function init(evt) {
   elementMessage = document.querySelector('#message');
   elementCandidates = document.querySelector('.element-candidates');
   elementTweetText = document.querySelector('.tweet-text');
+  elementCandidateOL = document.querySelector('.candidate-ol');
   $modal = $('#modal');
   //
   elementStartButton.addEventListener('click', startGame);
@@ -161,6 +163,7 @@ function restartGame(evt) {
   elementRestartButton.style.visibility = "hidden";
   elementMessage.innerHTML = '';
   startGame();
+  resetCandidates();
   $modal.slideToggle();
 }
 
@@ -226,26 +229,6 @@ function storeScore(firebase_score) {
   })
 }
 
-//open geocoder data
-let USGEOCODER_API_KEY = config.USGEOCODER_API_KEY;
-// var convert = require(['xml-js']);
-
-//open secrets data
-// function reqListener () {
-//   var x2js = new X2JS();
-//   let xml = this.responseText;
-//   console.log(xml);
-//   let converted = {};
-//   converted = x2js.xml2json(xml);
-//   console.log(converted);
-//   // console.log(xmlToJson(responseText));
-// }
-// var oReq = new XMLHttpRequest();
-// oReq.addEventListener("load", reqListener);
-// oReq.open("GET", "https://www.opensecrets.org/api/?method=candContrib&cid=N00007360&cycle=2020&apikey=8b37dbe3a79790b23575afe6b22e3e22");
-// oReq.send();
-// committees/C00458463.json
-
 //get candidates from pro publica
 fetch("https://api.propublica.org/campaign-finance/v1/2018/candidates/leaders/pac-total.json", {
     headers: {
@@ -264,8 +247,9 @@ fetch("https://api.propublica.org/campaign-finance/v1/2018/candidates/leaders/pa
       let name = index.name;
       let fullName = name.split(',');
       let fName =  fullName[1] + ' ';
+      fName = fName.replace('MR.', '');
       let lName =  fullName[0] + ' (' + party + ')';
-      let candidate = fName + lName;
+      let candidate = (fName + lName).toUpperCase();
       generateWrapper(candidate, pacMoneyCommas);
     })
     // .catch((error)=>{
@@ -275,7 +259,7 @@ fetch("https://api.propublica.org/campaign-finance/v1/2018/candidates/leaders/pa
       // let candidateOL = document.querySelector('.candidate-ol');
       // candidateOL.innerHTML = '<h4>There has been a problem retrieving some remote information. Please refresh the page to see the candidates.</h4>';
     // })
-    
+
     //reveal dollar amount when user clicks candidate name
     let elementCandidates = document.querySelector('.element-candidates');
     elementCandidates.addEventListener('click', (event)=>{
@@ -293,7 +277,6 @@ function numberWithCommas(x) {
 }
 
 //create list item for each candidate to inhabit
-let elementCandidateOL = document.querySelector('.candidate-ol');
 function generateWrapper(name, money) {
   let candWrapper = document.createElement('li');
   candWrapper.setAttribute('class', 'candidate-wrapper hidden');
@@ -309,21 +292,36 @@ function generateCandidate(name, money) {
   return html;
 }
 
+function resetCandidates(){
+  candList.forEach((index)=>{
+    index.classList.add('hidden');
+  })
+}
+
 //reveal candidates as user socre increases
 let candCounter = 0;
-let numOfCandidates = document.querySelector('.num-of-candidates');
+let candList;
 function revealCandidates() {
-    let candList = document.querySelectorAll('.candidate-wrapper');
+    candList = document.querySelectorAll('.candidate-wrapper');
     candCounter = (Math.floor((score-500) / 500)) + 1;
     // console.log(candList[(candCounter + 1)]);
     if(candList[(candCounter)]) {
       console.log('candCounter is ' + candCounter);
       candList[candCounter].classList.remove('hidden');
-      numOfCandidates.innerHTML = 'Great job! You revealed ' + (candCounter+1) + ' candidates!';
-      console.log(candList);
+      congratulate()
       return candCounter;
   } else {
     console.log('you win! candCounter is ' + candCounter);
+  }
+}
+
+//congratulate the user...or not
+function congratulate() {
+  let numOfCandidates = document.querySelector('.num-of-candidates');
+  if(score === 0){
+    numOfCandidates.innerHTML = 'Umm...you scored 0. Everything all right?';
+  } else {
+    numOfCandidates.innerHTML = 'Great job! You scored high enough to reveal ' + (candCounter+1) + ' candidate(s)!';
   }
 }
 
