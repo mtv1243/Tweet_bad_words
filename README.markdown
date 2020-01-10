@@ -17,4 +17,9 @@ Now you can practice your typing skills by anonymously typing words from the DHS
 Every 500 points you reveal the name of a congressional candidate who took PAC money in the 2018 election cycle. Score 10,000 points to reveal all 20 candidates!
 
 ---
+## IMPORTANT
+
+You will need an API key from Pro Publica to use this app. It should go in the config.js file. You can get one here: https://projects.propublica.org/api-docs/campaign-finance/
+
+---
  _A Pen created at CodePen.io. Original URL: [https://codepen.io/mtv1243/pen/GRgEagK](https://codepen.io/mtv1243/pen/GRgEagK).
