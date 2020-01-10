@@ -61,7 +61,8 @@ const SCORE_FACTOR = 10;
 const INTERVAL_FACTOR = 10;
 const LEVEL_FACTOR = 1000;
 const UNITY_FACTOR = 1;
-const BASE_FACTOR = 2;
+const BASE_FACTOR = .001;
+//base facter was 2
 //HTML Elements Javascript Variables
 let elementScore;
 let elementInputWord;
