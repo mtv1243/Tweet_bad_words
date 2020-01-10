@@ -216,7 +216,9 @@ function stopCountDown() {
 }
 
 function validateWord(evt) {
-  if (evt.target.value === words[option]) {
+  let lowerInput = evt.target.value.toLowerCase();
+  if (lowerInput === words[option]) {
+  // if (evt.target.value === words[option]) {
     stopCountDown();
     wordsCount++;
     score = Math.round(score + ((remainingTime + wordsCount) * SCORE_FACTOR))
