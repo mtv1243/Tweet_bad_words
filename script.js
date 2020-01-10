@@ -160,8 +160,8 @@ function startGame(evt) {
   elementTitleWord.innerHTML = 'Type the Word: ';
   elementRandomWord.innerHTML = words[option];
   elementRandomWord.style.color = "red";
-  elementInputWord.addEventListener('input', validateWord);
-  // elementInputWord.addEventListener('change', validateWord);
+  // elementInputWord.addEventListener('input', validateWord);
+  elementInputWord.addEventListener('keyup', validateWord);
 }
 
 function restartGame(evt) {
