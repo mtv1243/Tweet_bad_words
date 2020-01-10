@@ -262,13 +262,6 @@ fetch("https://api.propublica.org/campaign-finance/v1/2018/candidates/leaders/pa
       let candidate = (fName + lName).toUpperCase();
       generateWrapper(candidate, pacMoneyCommas);
     })
-    // .catch((error)=>{
-    //   console.log(error);
-    //   let gameContianer = document.getElementById('gameContainer');
-    //   gameContainer.innerHTML = '<h2>There has been a problem retrieving some remote information. Please refresh the page to see the candidates.</h2>';
-      // let candidateOL = document.querySelector('.candidate-ol');
-      // candidateOL.innerHTML = '<h4>There has been a problem retrieving some remote information. Please refresh the page to see the candidates.</h4>';
-    // })
 
     //reveal dollar amount when user clicks candidate name
     let elementCandidates = document.querySelector('.element-candidates');
@@ -345,76 +338,6 @@ function generateTweet() {
   elementTweetText.innerHTML = tweetText;
   console.log(tweetText);
 }
-
-
-
-//THIS WORKS!!!!
-// fetch('https://strainapi.evanbusse.com/PIHNBxp/searchdata/flavors')
-//   .then((response)=>{
-//     return response.json();
-//   })
-//   .then((res)=>{
-//     console.log(res[0].toLowerCase());
-//     res.forEach(el => words.push(el.toLowerCase()));
-//     console.log(words);
-//   });
-
-
-
-  // Changes XML to JSON
-// Modified version from here: http://davidwalsh.name/convert-xml-json
-// function xmlToJson(xml) {
-//   // Create the return object
-//   let obj = {};
-//
-//   if (xml.nodeType === 1) { // element
-//     // do attributes
-//     if (xml.attributes.length > 0) {
-//       obj['@attributes'] = {};
-//       for (let j = 0; j < xml.attributes.length; j += 1) {
-//         const attribute = xml.attributes.item(j);
-//         obj['@attributes'][attribute.nodeName] = attribute.nodeValue;
-//       }
-//     }
-//   } else if (xml.nodeType === 3) { // text
-//     obj = xml.nodeValue;
-//   }
-//
-//   // do children
-//   // If just one text node inside
-//   if (xml.hasChildNodes() && xml.childNodes.length === 1 && xml.childNodes[0].nodeType === 3) {
-//     obj = xml.childNodes[0].nodeValue;
-//   } else if (xml.hasChildNodes()) {
-//     for (let i = 0; i < xml.childNodes.length; i += 1) {
-//       const item = xml.childNodes.item(i);
-//       const nodeName = item.nodeName;
-//       if (typeof (obj[nodeName]) === 'undefined') {
-//         obj[nodeName] = xmlToJson(item);
-//       } else {
-//         if (typeof (obj[nodeName].push) === 'undefined') {
-//           const old = obj[nodeName];
-//           obj[nodeName] = [];
-//           obj[nodeName].push(old);
-//         }
-//         obj[nodeName].push(xmlToJson(item));
-//       }
-//     }
-//   }
-//   return obj;
-// }
-
-
-//
-//
-// function generateNonce() {
-//   let nonce = '';
-//   let possible = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
-//   let length = 42;
-//   for (let j = 0; j < length; j++) {
-//     nonce += possible.charAt(Math.floor(Math.random() * possible.length));
-//   }
-//   return nonce;
-// }
 
 //lucky semicolon, don't touch
 //;

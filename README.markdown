@@ -19,7 +19,7 @@ Every 500 points you reveal the name of a congressional candidate who took PAC m
 ---
 ## IMPORTANT
 
-You will need an API key from Pro Publica to use this app. It should go in the config.js file. You can get one here: https://projects.propublica.org/api-docs/campaign-finance/
+You will need an API key from Pro Publica, and a firebase static database to use this app. These should go in the config.js file. You can get the pro publica key here: https://projects.propublica.org/api-docs/campaign-finance/
 
 ---
  _A Pen created at CodePen.io. Original URL: [https://codepen.io/mtv1243/pen/GRgEagK](https://codepen.io/mtv1243/pen/GRgEagK).
