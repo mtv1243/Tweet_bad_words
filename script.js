@@ -161,6 +161,7 @@ function startGame(evt) {
   elementRandomWord.innerHTML = words[option];
   elementRandomWord.style.color = "red";
   elementInputWord.addEventListener('input', validateWord);
+  // elementInputWord.addEventListener('change', validateWord);
 }
 
 function restartGame(evt) {
